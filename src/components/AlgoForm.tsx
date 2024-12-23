@@ -3,7 +3,7 @@ import { Input } from './ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select'
 import { Textarea } from './ui/textarea'
 import { AlgoContext, ALGO_KIND } from '@/lib/context'
-import { bf, MP } from '@/lib/algos'
+import { MP } from '@/lib/algos'
 import { Button } from './ui/button'
 
 export default function AlgoForm() {

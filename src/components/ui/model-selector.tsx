@@ -135,6 +135,7 @@ interface ModelItemProps {
 function ModelItem({ algo, isSelected, onSelect, onPeek }: ModelItemProps) {
     const ref = React.useRef<HTMLDivElement>(null)
 
+    // eslint-disable-next-line
     useMutationObserver(ref, (mutations: any[]) => {
         mutations.forEach((mutation) => {
             if (
