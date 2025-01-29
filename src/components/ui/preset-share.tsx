@@ -30,7 +30,7 @@ export function PresetShare() {
             </Label>
             <Input
               id="link"
-              defaultValue="https://platform.openai.com/playground/p/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
+              defaultValue="https://algoviz.sidahmed.tech/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
               readOnly
               className="h-9"
             />

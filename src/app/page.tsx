@@ -12,6 +12,8 @@ import { ThemeProvider } from "@/components/ThemeProvider"
 import { ToggleTheme } from "@/components/ToggleTheme"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import AlgoOptions from "@/components/AlgoOptions"
+import { LineChart } from "@/components/AreaChart"
+import PerfCharts from "@/components/PerfCharts"
 
 export default function PlaygroundPage() {
     return (
@@ -48,13 +50,8 @@ export default function PlaygroundPage() {
                                 </div>
                                 <div className="md:order-1">
                                     <div className="flex h-[80vh] flex-col space-y-4">
-                                        <div className="space-y-2 pl-4 py-1 border-2 border-neutral-900/10 h-full"></div>
-                                        <div className="flex items-center space-x-2">
-                                            <Button>Run</Button>
-                                            <Button variant="secondary">
-                                                <span className="sr-only">Restart</span>
-                                                <RotateCcw />
-                                            </Button>
+                                        <div className="space-y-2 pl-4 py-1 border-2 border-neutral-900/10 h-full">
+                                            <PerfCharts />
                                         </div>
                                     </div>
                                 </div>

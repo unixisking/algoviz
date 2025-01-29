@@ -23,7 +23,7 @@ export function WordLengthSelector({ value, onChange }: WordLengthSelectorProps)
                 <HoverCardTrigger asChild>
                     <div className="grid gap-4">
                         <div className="flex items-center justify-between">
-                            <Label htmlFor="pattern-length">Pattern Length</Label>
+                            <Label htmlFor="pattern-length">Maxiumum Pattern Length</Label>
                             <span className="w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-border">
                                 {value}
                             </span>
@@ -36,7 +36,7 @@ export function WordLengthSelector({ value, onChange }: WordLengthSelectorProps)
                             step={4}
                             onValueChange={onChange}
                             className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4"
-                            aria-label="Pattern Length"
+                            aria-label="Maxiumum Pattern Length"
                         />
                     </div>
                 </HoverCardTrigger>

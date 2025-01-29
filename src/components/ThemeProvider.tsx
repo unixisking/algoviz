@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useMemo, useState } from "react"
 
 type Theme = "dark" | "light" | "system"
 
@@ -12,12 +12,12 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
     theme: Theme
-    setTheme: (theme: Theme) => void
+    toggleTheme: (theme: Theme) => void
 }
 
 const initialState: ThemeProviderState = {
     theme: "system",
-    setTheme: () => null,
+    toggleTheme: () => null,
 }
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
@@ -57,21 +57,20 @@ export function ThemeProvider({
         root.classList.add(theme)
     }, [theme])
 
-    const value = {
-        theme,
-        setTheme: (theme: Theme) => {
-            try {
-                localStorage.setItem(storageKey, theme)
-                setTheme(theme)
-            }
-            catch (error) {
-                console.error(error)
-            }
-        },
+    const toggleTheme = (theme: Theme) => {
+        try {
+            localStorage.setItem(storageKey, theme)
+            setTheme(theme)
+        }
+        catch (error) {
+            console.error(error)
+        }
     }
 
+    const themeProps = useMemo(() => ({ theme, toggleTheme }), [theme])
+
     return (
-        <ThemeProviderContext.Provider {...props} value={value}>
+        <ThemeProviderContext.Provider {...props} value={themeProps}>
             {children}
         </ThemeProviderContext.Provider>
     )
