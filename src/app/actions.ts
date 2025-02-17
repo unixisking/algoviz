@@ -2,45 +2,80 @@
 import { execFile } from 'child_process'
 import { promisify } from 'util'
 import path from 'path'
+import fs from 'fs'
 
 import { IBenchmark } from '@/lib/store/perf-slice'
 
 const execFileAsync = promisify(execFile)
 
 interface SubmitOptions {
-    kind: string
-    textSize: number
-    patternLength: number
-    alphabetSize: number
+  kinds: string[]
+  textSize: number
+  patternLength: number
+  alphabetSize: number
 }
 
-export async function submit(options: SubmitOptions): Promise<IBenchmark[] | undefined> {
-    const { kind, textSize, patternLength, alphabetSize } = options
+interface AlgosMetrics {
+  kind: string
+  metrics: IBenchmark[]
+}
+
+export async function submit(
+  options: SubmitOptions
+): Promise<AlgosMetrics[] | undefined> {
+  const { kinds, textSize, patternLength, alphabetSize } = options
+
+  const programFilePath = path.join(process.cwd(), 'src', 'bin', 'program')
+
+  if (!fs.existsSync(programFilePath)) {
+    throw new Error(`Binary file not found at: ${programFilePath}`)
+  }
+  console.log(programFilePath)
+
+  const allMetrics: AlgosMetrics[] = []
+
+  for (const kind of kinds) {
     const metrics = []
-
-    const programFilePath = path.join(process.cwd(), 'src', 'bin', 'program')
-
     for (let i = 2; i <= alphabetSize; i = i + 6) {
-        const { stdout, stderr } = await execFileAsync(
-            programFilePath,
-            [
-                '-k',
-                kind,
-                '-t',
-                textSize.toString(),
-                '-l',
-                patternLength.toString(),
-                '-a',
-                i.toString(),
-            ]
-        )
-        if (stderr) {
-            console.log("Error executing binary", stderr)
-            return
-        }
-        metrics.push({ alphabetSize: i, time: parseFloat(stdout) })
+      const { stdout, stderr } = await execFileAsync(programFilePath, [
+        '-k',
+        kind,
+        '-t',
+        textSize.toString(),
+        '-l',
+        patternLength.toString(),
+        '-a',
+        i.toString(),
+      ])
+      if (stderr) {
+        console.log('Error executing binary', stderr)
+        return
+      }
+      metrics.push({ alphabetSize: i, time: parseFloat(stdout) })
     }
-    console.log("metrics", metrics)
+    allMetrics.push({ kind, metrics })
+  }
 
-    return metrics
+  return allMetrics
+}
+
+export async function genReport(textInput: string): Promise<string> {
+  const response = await fetch(
+    'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,
+        'Content-Type': 'application/json',
+        'x-use-cache': 'false',
+      },
+      body: JSON.stringify({
+        inputs: textInput,
+        parameters: { max_new_tokens: 100, return_full_text: false },
+      }),
+    }
+  )
+  const result = await response.json()
+  console.log(result)
+  return result[0].generated_text
 }
