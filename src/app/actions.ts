@@ -25,7 +25,12 @@ export async function submit(
 ): Promise<AlgosMetrics[] | undefined> {
   const { kinds, textSize, patternLength, alphabetSize } = options
 
-  const programFilePath = path.join(process.cwd(), 'src', 'bin', 'program')
+  const programFilePath = path.join(
+    process.cwd(),
+    'src',
+    'bin',
+    process.env.NODE_ENV === 'production' ? 'program_linux' : 'program'
+  )
 
   console.log('CWD:', process.cwd())
   console.log(
