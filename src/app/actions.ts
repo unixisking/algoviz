@@ -27,10 +27,21 @@ export async function submit(
 
   const programFilePath = path.join(process.cwd(), 'src', 'bin', 'program')
 
+  console.log('CWD:', process.cwd())
+  console.log(
+    'Bin directory contents:',
+    await fs.promises.readdir(path.join(process.cwd(), 'src', 'bin'))
+  )
+  console.log('File exists?', fs.existsSync(programFilePath))
+  console.log(
+    'File permissions:',
+    (await fs.promises.stat(programFilePath)).mode
+  )
+  console.log(programFilePath)
+
   if (!fs.existsSync(programFilePath)) {
     throw new Error(`Binary file not found at: ${programFilePath}`)
   }
-  console.log(programFilePath)
 
   const allMetrics: AlgosMetrics[] = []
 
