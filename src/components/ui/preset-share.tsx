@@ -1,13 +1,13 @@
-import { Copy } from "lucide-react"
+import { Copy } from 'lucide-react'
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from '@/components/ui/popover'
 
 export function PresetShare() {
   return (
@@ -17,7 +17,7 @@ export function PresetShare() {
       </PopoverTrigger>
       <PopoverContent align="end" className="w-[520px]">
         <div className="flex flex-col space-y-2 text-center sm:text-left">
-          <h3 className="text-lg font-semibold">Share preset</h3>
+          <h3 className="text-lg font-semibold">Share analysis</h3>
           <p className="text-sm text-muted-foreground">
             Anyone who has this link and an OpenAI account will be able to view
             this.
@@ -30,7 +30,7 @@ export function PresetShare() {
             </Label>
             <Input
               id="link"
-              defaultValue="https://algoviz.sidahmed.tech/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
+              defaultValue="https://algoteachai.sidahmed.tech/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
               readOnly
               className="h-9"
             />

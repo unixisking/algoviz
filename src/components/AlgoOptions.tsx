@@ -9,7 +9,7 @@ import { WordLengthSelector } from './ui/wordlength-selector'
 import { useStore } from '@/lib/store'
 import { RotateCcw } from 'lucide-react'
 import { Button } from './ui/button'
-import { submit } from '@/app/actions'
+import { submit } from '@/lib/actions/perf'
 
 export default function AlgoOptions() {
   const alphabetSize = useStore((state) => state.alphabetSize)

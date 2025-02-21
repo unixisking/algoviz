@@ -22,10 +22,7 @@ export const InputAI = ({
   }, [currentIndex, text, speed])
 
   return (
-    <div
-      className="font-sans text-base whitespace-pre-wrap border-r-2 border-black"
-      {...props}
-    >
+    <div className="font-sans text-sm whitespace-pre-wrap" {...props}>
       {displayedText}
     </div>
   )

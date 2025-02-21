@@ -1,19 +1,30 @@
-import { ArrowBigLeft, ArrowBigRight, RotateCcw } from 'lucide-react'
+import { RotateCcw } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { CodeViewer } from '@/components/ui/code-viewer'
 import { PresetActions } from '@/components/ui/preset-actions'
 import { PresetSave } from '@/components/ui/preset-save'
-import { PresetSelector } from '@/components/ui/preset-selector'
 import { PresetShare } from '@/components/ui/preset-share'
-import { presets } from '@/data/presets'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { ToggleTheme } from '@/components/ToggleTheme'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import AlgoOptions from '@/components/AlgoOptions'
 import PerfCharts from '@/components/PerfCharts'
 import IDE from '@/components/IDE'
+import PerfTable from '@/components/PerfTable'
+import { CommandMenu } from '@/components/CommandMenu'
+import { PresetSelector } from '@/components/ui/preset-selector'
+import { presets } from '@/data/presets'
+// import { PresetSelector } from '@/components/ui/preset-selector'
+// import { presets } from '@/data/presets'
+
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '@/components/ui/resizable'
+import Chat from '@/components/Chat'
 
 export default function PlaygroundPage() {
   return (
@@ -29,7 +40,7 @@ export default function PlaygroundPage() {
             </TabsTrigger>
             <TabsTrigger
               className="py-2 data-[state=active]:bg-neutral-900 data-[state=active]:text-white"
-              value="viz"
+              value="codelab"
             >
               CodeLab
             </TabsTrigger>
@@ -40,7 +51,7 @@ export default function PlaygroundPage() {
                 Performance Benchmarks of Pattern Matching Algorithms
               </h2>
               <div className="ml-auto flex w-full space-x-2 sm:justify-end">
-                <PresetSelector presets={presets} />
+                <CommandMenu />
                 <PresetSave />
                 <div className="hidden space-x-2 md:flex">
                   <CodeViewer />
@@ -59,27 +70,38 @@ export default function PlaygroundPage() {
                 <div className="md:order-1">
                   <div className="flex h-[80vh] flex-col space-y-4">
                     <div className="space-y-2 pl-4 py-1 border-2 border-neutral-900/10 h-full">
-                      <PerfCharts />
+                      <div className="grid grid-cols-6 w-full">
+                        <PerfCharts />
+                        <PerfTable />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </TabsContent>
-          <TabsContent value="viz">
+          <TabsContent value="codelab">
             <div className="container flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
               <h2 className="text-lg font-semibold w-full">
                 Code Lab: Test your algorithms here
               </h2>
               <div className="ml-auto flex w-full space-x-2 sm:justify-end">
                 <div className="hidden space-x-2 md:flex">
-                  <CodeViewer />
+                  <PresetSelector presets={presets} />
+                  {/* <CodeViewer /> */}
+                  <div className="flex items-center space-x-2">
+                    <Button>Run</Button>
+                    <Button variant="secondary">
+                      <span className="sr-only">Reset</span>
+                      <RotateCcw />
+                    </Button>
+                  </div>
                 </div>
                 <ToggleTheme />
               </div>
             </div>
             <Separator />
-            <div className="container h-full py-6">
+            {/* <div className="container h-full py-6">
               <div className="grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]">
                 <div className="hidden flex-col space-y-4 sm:flex md:order-2">
                   <AlgoOptions />
@@ -89,25 +111,32 @@ export default function PlaygroundPage() {
                     <div className="space-y-2 pl-4 py-1 border-2 border-neutral-900/10 h-full">
                       <IDE />
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Button>Run</Button>
-                      <Button variant="secondary">
-                        <span className="sr-only">Back</span>
-                        <ArrowBigLeft />
-                      </Button>
-                      <Button variant="secondary">
-                        <span className="sr-only">Forward</span>
-                        <ArrowBigRight />
-                      </Button>
-                      <Button variant="secondary">
-                        <span className="sr-only">Restart</span>
-                        <RotateCcw />
-                      </Button>
-                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <ResizablePanelGroup
+              direction="horizontal"
+              className="max-w-vw rounded-lg border"
+            >
+              <ResizablePanel defaultSize={70}>
+                <IDE />
+              </ResizablePanel>
+              <ResizableHandle />
+              <ResizablePanel>
+                <ResizablePanelGroup direction="vertical">
+                  <ResizablePanel defaultSize={80}>
+                    <Chat />
+                  </ResizablePanel>
+                  <ResizableHandle />
+                  <ResizablePanel className="relative">
+                    <div className="bg-black/90 text-white text-sm h-full">
+                      <p className="border border-white p-1">Output</p>
+                    </div>
+                  </ResizablePanel>
+                </ResizablePanelGroup>
+              </ResizablePanel>
+            </ResizablePanelGroup>
           </TabsContent>
         </Tabs>
 

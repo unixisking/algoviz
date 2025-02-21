@@ -1,37 +1,35 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 import Highlight from 'react-highlight'
 
-
-import 'highlight.js/styles/gradient-dark.css'; // Include a nice code theme
-
+import 'highlight.js/styles/atom-one-light.css' // Include a nice code theme
 
 export function CodeViewer() {
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button variant="secondary">View code</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-fit">
-                <DialogHeader>
-                    <DialogTitle>Horspool Algorithm</DialogTitle>
-                    <DialogDescription>
-                        This is the code of the selected searching algorithm written in C
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4">
-                    <Highlight className="c">
-                        {`void horspool(const char *text, int n, const char *pattern, int m) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="secondary">View code</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-fit">
+        <DialogHeader>
+          <DialogTitle>Horspool Algorithm</DialogTitle>
+          <DialogDescription>
+            This is the code of the selected searching algorithm written in C
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4">
+          <Highlight className="c">
+            {`void horspool(const char *text, int n, const char *pattern, int m) {
   int badCharRuleTable[UCHAR_MAX];
 
   BMBadCharRule(pattern, m, badCharRuleTable);
@@ -47,14 +45,15 @@ export function CodeViewer() {
     j += badCharRuleTable[(int)firstChar];
   }
 }`}
-                    </Highlight>
-                    <div>
-                        <p className="text-sm text-muted-foreground">
-                            To view the code of the project, please visit the Github repoisitory
-                        </p>
-                    </div>
-                </div>
-            </DialogContent>
-        </Dialog>
-    )
+          </Highlight>
+          <div>
+            <p className="text-sm text-muted-foreground">
+              To view the code of the project, please visit the Github
+              repoisitory
+            </p>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
 }

@@ -55,7 +55,7 @@ export function AlgoSelector({
     <div className="grid gap-2">
       <HoverCard openDelay={200}>
         <HoverCardTrigger asChild>
-          <Label htmlFor="model">First Algorithm</Label>
+          <Label htmlFor="model">Algorithm</Label>
         </HoverCardTrigger>
         <HoverCardContent
           align="start"

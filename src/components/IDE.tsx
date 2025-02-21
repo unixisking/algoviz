@@ -1,22 +1,17 @@
 'use client'
 
+import { useStore } from '@/lib/store'
 import Editor from '@monaco-editor/react'
 
 export default function IDE() {
-  const handleSubmit = async () => {}
+  const currentPreset = useStore((store) => store.currentPreset)
 
   return (
-    <form action="#" onSubmit={handleSubmit}>
-      <div className="">
-        <label htmlFor="comment" className="sr-only">
-          Add your code
-        </label>
-        <Editor
-          height="50vh"
-          defaultLanguage="c"
-          defaultValue='int main() { printf("Hello, World!"); return 0;}'
-        />
-      </div>
-    </form>
+    <Editor
+      value={currentPreset.code}
+      height="80vh"
+      defaultLanguage="c"
+      defaultValue={currentPreset.code}
+    />
   )
 }

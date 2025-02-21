@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'AlgoViz',
+  title: 'AlgoTeachAI',
   description: 'Make sense of pattern matching algorithms',
 }
 

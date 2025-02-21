@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { AlgoPerfSlice, createAlgoPerfSlice } from './perf-slice'
-import { AlgoVizSlice, createAlgoVizSlice } from './viz-slice'
+import { CodelabSlice, createAlgoTeachAISlice } from './codelab-slice'
 import { Algo, algos } from '@/data/models'
 
 export interface SharedSlice {
@@ -13,7 +13,7 @@ export interface SharedSlice {
 }
 
 const createSharedSlice: StateCreator<
-  AlgoPerfSlice & AlgoVizSlice & SharedSlice,
+  AlgoPerfSlice & CodelabSlice & SharedSlice,
   [],
   [],
   SharedSlice
@@ -32,16 +32,16 @@ const createSharedSlice: StateCreator<
     })),
 })
 
-export const useStore = create<AlgoPerfSlice & AlgoVizSlice & SharedSlice>()(
+export const useStore = create<AlgoPerfSlice & CodelabSlice & SharedSlice>()(
   devtools(
     persist(
       (...args) => ({
         ...createAlgoPerfSlice(...args),
-        ...createAlgoVizSlice(...args),
+        ...createAlgoTeachAISlice(...args),
         ...createSharedSlice(...args),
       }),
       {
-        name: 'algoviz-store',
+        name: 'AlgoTeachAI-store',
       }
     )
   )

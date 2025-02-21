@@ -1,6 +1,6 @@
 import { StateCreator } from 'zustand'
 import { SharedSlice } from '.'
-import { AlgoVizSlice } from './viz-slice'
+import { CodelabSlice } from './codelab-slice'
 
 export interface IBenchmark {
   time: number
@@ -20,7 +20,7 @@ export interface AlgoPerfSlice {
 }
 
 export const createAlgoPerfSlice: StateCreator<
-  AlgoPerfSlice & AlgoVizSlice & SharedSlice,
+  AlgoPerfSlice & CodelabSlice & SharedSlice,
   [],
   [],
   AlgoPerfSlice

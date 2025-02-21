@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
-import * as React from "react"
+import * as React from 'react'
 // import { useRouter } from "next/navigation"
-import { PopoverProps } from "@radix-ui/react-popover"
-import { Check, ChevronsUpDown } from "lucide-react"
+import { PopoverProps } from '@radix-ui/react-popover'
+import { Check, ChevronsUpDown } from 'lucide-react'
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import {
   Command,
   CommandEmpty,
@@ -14,14 +14,15 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from '@/components/ui/command'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from '@/components/ui/popover'
 
-import { Preset } from "@/data/presets"
+import { Preset } from '@/data/presets'
+import { useStore } from '@/lib/store'
 
 interface PresetSelectorProps extends PopoverProps {
   presets: Preset[]
@@ -29,8 +30,11 @@ interface PresetSelectorProps extends PopoverProps {
 
 export function PresetSelector({ presets, ...props }: PresetSelectorProps) {
   const [open, setOpen] = React.useState(false)
-  const [selectedPreset, setSelectedPreset] = React.useState<Preset>()
-  // const router = useRouter()
+  // const [selectedPreset, setSelectedPreset] = useStore(
+  //   ({ currentPreset, updatePreset }) => [currentPreset, updatePreset]
+  // )
+  const selectedPreset = useStore((store) => store.currentPreset)
+  const setSelectedPreset = useStore((store) => store.updatePreset)
 
   return (
     <Popover open={open} onOpenChange={setOpen} {...props}>
@@ -38,17 +42,17 @@ export function PresetSelector({ presets, ...props }: PresetSelectorProps) {
         <Button
           variant="outline"
           role="combobox"
-          aria-label="Load a benchmark..."
+          aria-label="Load an algorithm..."
           aria-expanded={open}
           className="flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]"
         >
-          {selectedPreset ? selectedPreset.name : "Load a benchmark..."}
+          {selectedPreset ? selectedPreset.name : 'Load an algorithm...'}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[300px] p-0">
         <Command>
-          <CommandInput placeholder="Search saved benchmarks..." />
+          <CommandInput placeholder="Search saved algorithms..." />
           <CommandList>
             <CommandEmpty>No presets found.</CommandEmpty>
             <CommandGroup heading="Select an option">
@@ -63,10 +67,10 @@ export function PresetSelector({ presets, ...props }: PresetSelectorProps) {
                   {preset.name}
                   <Check
                     className={cn(
-                      "ml-auto",
+                      'ml-auto',
                       selectedPreset?.id === preset.id
-                        ? "opacity-100"
-                        : "opacity-0"
+                        ? 'opacity-100'
+                        : 'opacity-0'
                     )}
                   />
                 </CommandItem>
