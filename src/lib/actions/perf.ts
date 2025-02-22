@@ -80,6 +80,5 @@ export async function genReport(textInput: string): Promise<string> {
     }
   )
   const result = await response.json()
-  console.log(result)
   return result[0].generated_text
 }

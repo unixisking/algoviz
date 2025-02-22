@@ -25,24 +25,25 @@ import {
   ResizablePanelGroup,
 } from '@/components/ui/resizable'
 import Chat from '@/components/Chat'
+import { Output } from '@/components/Output'
 
 export default function PlaygroundPage() {
   return (
     <ThemeProvider>
       <div className="hidden h-full flex-col md:flex p-4 mx-auto max-w-[95%]">
-        <Tabs defaultValue="perf" className="">
+        <Tabs defaultValue="codelab" className="">
           <TabsList>
-            <TabsTrigger
-              className="py-2 data-[state=active]:bg-neutral-900 data-[state=active]:text-white"
-              value="perf"
-            >
-              Performance Benchmarks
-            </TabsTrigger>
             <TabsTrigger
               className="py-2 data-[state=active]:bg-neutral-900 data-[state=active]:text-white"
               value="codelab"
             >
               CodeLab
+            </TabsTrigger>
+            <TabsTrigger
+              className="py-2 data-[state=active]:bg-neutral-900 data-[state=active]:text-white"
+              value="perf"
+            >
+              Performance Benchmarks
             </TabsTrigger>
           </TabsList>
           <TabsContent value="perf">
@@ -132,6 +133,7 @@ export default function PlaygroundPage() {
                   <ResizablePanel className="relative">
                     <div className="bg-black/90 text-white text-sm h-full">
                       <p className="border border-white p-1">Output</p>
+                      <Output />
                     </div>
                   </ResizablePanel>
                 </ResizablePanelGroup>

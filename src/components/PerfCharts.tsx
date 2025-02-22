@@ -12,8 +12,6 @@ export default function PerfCharts() {
   const metrics = useStore((state) => state.metrics)
   // const [report, setReport] = React.useState<string | null>(null)
 
-  // console.log('report', report)
-
   return (
     <div className="col-span-4">
       <AreaChartComponent
@@ -21,34 +19,6 @@ export default function PerfCharts() {
         description="Comparison of different pattern lengths"
         data={metrics}
       />
-      {/* <Button
-            onClick={async () => {
-              const report = await genReport(
-                'Teach me Morris Pratt pattern matching algorithm ?'
-              )
-              setReport(report)
-            }}
-            variant="outline"
-            className="flex items-center space-x-2"
-          >
-            <MagicIcon />
-            <span
-              style={{
-                backgroundImage:
-                  'linear-gradient(to right, rgb(175, 82, 222), rgb(0, 122, 255))',
-                WebkitTextFillColor: 'transparent',
-              }}
-              className="font-bold bg-clip-text"
-            >
-              Generate an analysis report with AI
-            </span>
-          </Button> */}
-
-      {/* {report && (
-            <div className="mt-3">
-              <InputAI text={report} />
-            </div>
-          )} */}
     </div>
   )
 }
@@ -63,7 +33,6 @@ export const MagicIcon = (
     width="16"
     height="16"
     preserveAspectRatio="xMidYMid meet"
-    // style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;"
     style={{
       transform: 'translate3d(0px, 0px, 0px)',
       contentVisibility: 'visible',

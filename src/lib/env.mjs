@@ -9,5 +9,6 @@ export const env = createEnv({
       .default('development'),
     DATABASE_URL: z.string().min(1),
     DATABASE_CERT: z.string().min(1),
+    JUDGE0_API_KEY: z.string().min(1),
   },
 })

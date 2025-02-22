@@ -7,6 +7,10 @@ export default function PerfTable() {
   const metrics = useStore((state) => state.metrics)
   const [highlightedRow, setHighlightedRow] = useState<number | null>(null)
 
+  if (metrics.length === 0) {
+    return null
+  }
+
   const handleMouseEnter = (rowIndex: number) => {
     setHighlightedRow(rowIndex)
   }

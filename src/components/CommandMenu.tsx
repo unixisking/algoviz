@@ -22,7 +22,6 @@ export function CommandMenu() {
   const [response, setResponse] = React.useState<string | null>(null)
   const [searchedText, setSearchedText] = React.useState('')
   const [open, setOpen] = React.useState(false)
-  console.log('reponse from cmdk', response)
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

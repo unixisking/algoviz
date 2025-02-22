@@ -25,8 +25,6 @@ export default function AlgoOptions() {
   const updateSecondAlgo = useStore((state) => state.updateSecondAlgo)
   const updateMetrics = useStore((state) => state.updateMetrics)
 
-  console.log(firstAlgo, secondAlgo)
-
   return (
     <>
       <AlgoSelector
@@ -60,7 +58,6 @@ export default function AlgoOptions() {
               kinds: [firstAlgo.id, secondAlgo.id],
             })
             if (metrics) {
-              console.log('metrics', metrics)
               updateMetrics(metrics)
             } else {
               //Show error
