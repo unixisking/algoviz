@@ -34,7 +34,7 @@ export default function Chat() {
       const language = match[1] || ''
       const code = match[2]
       parts.push(
-        <div className="flex flex-col rounded-3xl bg-slate-50 p-4 dark:bg-slate-800 px-5 py-2.5">
+        <div className="flex flex-col rounded-3xl bg-slate-50 p-4 dark:bg-slate-800 px-5 py-2.5 w-[80%]">
           <Highlight key={lastIndex} className={clsx(language, 'text-sm')}>
             {code}
           </Highlight>
@@ -97,7 +97,7 @@ export default function Chat() {
 
 const UserMessage = ({ content, ...rest }: { content: string }) => (
   <div className="flex items-center justify-end gap-2" {...rest}>
-    <div className="bg-blue-500 p-3 rounded-lg">
+    <div className="bg-blue-500 p-3 rounded-lg w-[80%]">
       <p className="text-white text-sm">{content}</p>
     </div>
     <UserCircle className="flex-shrink-0 text-blue-500" />
@@ -107,7 +107,7 @@ const UserMessage = ({ content, ...rest }: { content: string }) => (
 const AIMessage = ({ content, ...rest }: { content: string }) => (
   <div className="flex items-center" {...rest}>
     <BotMessageSquare className="flex-shrink-0" />
-    <div className="ml-3 bg-gray-100 p-3 rounded-lg">
+    <div className="ml-3 bg-gray-100 p-3 rounded-lg w-[80%]">
       <p className="text-sm text-gray-800">{content}</p>
     </div>
   </div>
