@@ -13,7 +13,12 @@ export default function CodeRunner() {
       <Button
         onClick={async () => {
           const response = await submission(presetCode)
-          updateCodeResult(response.response.stdout)
+          console.log('response', response)
+          if (response.success) {
+            updateCodeResult(response.response.stdout)
+          } else {
+            updateCodeResult(response.response.status.description)
+          }
         }}
       >
         Run
