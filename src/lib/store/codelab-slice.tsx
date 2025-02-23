@@ -5,8 +5,11 @@ import { Preset, presets } from '@/data/presets'
 
 export interface CodelabSlice {
   currentPreset: Preset
+  codeResult: string
 
-  updatePreset: (newPreset: Preset) => void
+  updatePreset: (newPresetId: string) => void
+  updateCodeOfPreset: (code: string) => void
+  updateCodeResult: (newCodeResult: string) => void
 }
 
 export const createAlgoTeachAISlice: StateCreator<
@@ -16,6 +19,18 @@ export const createAlgoTeachAISlice: StateCreator<
   CodelabSlice
 > = (set) => ({
   currentPreset: presets[0],
+  codeResult: '',
 
-  updatePreset: (newPreset) => set(() => ({ currentPreset: newPreset })),
+  updateCodeOfPreset: (code) =>
+    set((prevState) => ({
+      ...prevState,
+      currentPreset: { ...prevState.currentPreset, code },
+    })),
+
+  updatePreset: (newPresetId) =>
+    set(() => ({
+      currentPreset: presets.filter((p) => p.id === newPresetId)[0],
+    })),
+  updateCodeResult: (newCodeResult) =>
+    set(() => ({ codeResult: newCodeResult })),
 })

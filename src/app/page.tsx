@@ -1,6 +1,3 @@
-import { RotateCcw } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { CodeViewer } from '@/components/ui/code-viewer'
 import { PresetActions } from '@/components/ui/preset-actions'
@@ -26,6 +23,7 @@ import {
 } from '@/components/ui/resizable'
 import Chat from '@/components/Chat'
 import { Output } from '@/components/Output'
+import CodeRunner from '@/components/CodeRunner'
 
 export default function PlaygroundPage() {
   return (
@@ -90,32 +88,12 @@ export default function PlaygroundPage() {
                 <div className="hidden space-x-2 md:flex">
                   <PresetSelector presets={presets} />
                   {/* <CodeViewer /> */}
-                  <div className="flex items-center space-x-2">
-                    <Button>Run</Button>
-                    <Button variant="secondary">
-                      <span className="sr-only">Reset</span>
-                      <RotateCcw />
-                    </Button>
-                  </div>
+                  <CodeRunner />
                 </div>
                 <ToggleTheme />
               </div>
             </div>
             <Separator />
-            {/* <div className="container h-full py-6">
-              <div className="grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]">
-                <div className="hidden flex-col space-y-4 sm:flex md:order-2">
-                  <AlgoOptions />
-                </div>
-                <div className="md:order-1">
-                  <div className="flex h-[80vh] flex-col space-y-4">
-                    <div className="space-y-2 pl-4 py-1 border-2 border-neutral-900/10 h-full">
-                      <IDE />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
             <ResizablePanelGroup
               direction="horizontal"
               className="max-w-vw rounded-lg border"

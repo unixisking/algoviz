@@ -60,7 +60,7 @@ export function PresetSelector({ presets, ...props }: PresetSelectorProps) {
                 <CommandItem
                   key={preset.id}
                   onSelect={() => {
-                    setSelectedPreset(preset)
+                    setSelectedPreset(preset.id)
                     setOpen(false)
                   }}
                 >

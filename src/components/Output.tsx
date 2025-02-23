@@ -1,6 +1,8 @@
-import { getSubmission } from '@/lib/actions/judge0'
+'use client'
 
-export async function Output() {
-  const output = await getSubmission('812bd105-f0fe-4eeb-9a75-7d964c1f41c7')
-  return <div className="px-2 pt-2">{output.stdout}</div>
+import { useStore } from '@/lib/store'
+
+export function Output() {
+  const codeResult = useStore((store) => store.codeResult)
+  return <div className="px-2 pt-2">{codeResult}</div>
 }
