@@ -7,19 +7,17 @@ import {
   //   CommandEmpty,
   CommandGroup,
   CommandInput,
-  CommandItem,
+  // CommandItem,
   CommandList,
   //   CommandSeparator,
   //   CommandShortcut,
 } from '@/components/ui/command'
 import { MagicIcon } from './PerfCharts'
-import { InputAI } from './InputAI'
-import { Button } from './ui/button'
-
-import { genReport } from '@/lib/actions/perf'
+// import { InputAI } from './InputAI'
+// import { Button } from './ui/button'
 
 export function CommandMenu() {
-  const [response, setResponse] = React.useState<string | null>(null)
+  // const [response, setResponse] = React.useState<string | null>(null)
   const [searchedText, setSearchedText] = React.useState('')
   const [open, setOpen] = React.useState(false)
 
@@ -58,15 +56,15 @@ export function CommandMenu() {
             <div className="p-2 flex text-sm">
               <MagicIcon className="flex-shrink-0 mr-2" />
               <p>
-                <InputAI
+                {/* <InputAI
                   text="
                 Hello I'm AlgoTeach AI Lorem ipsum dolor sit amet
                 consectetur adipisicing elit. Labore sit eos omnis placeat id
                 mollitia facilis repellendus"
-                />
+                /> */}
               </p>
             </div>
-            {response ? (
+            {/* {response ? (
               <div className="p-2">
                 <CommandItem>Hello</CommandItem>
                 <p className="font-bold">Response :</p>
@@ -82,12 +80,6 @@ export function CommandMenu() {
                         setSearchedText(
                           'What is a pattern matching algorithm ?'
                         )
-                        const response = await genReport(
-                          'What is a pattern matching algorithm ?'
-                        )
-                        if (response) {
-                          setResponse(response)
-                        }
                       }}
                       variant={'outline'}
                     >
@@ -116,7 +108,7 @@ export function CommandMenu() {
                   </CommandItem>
                 </div>
               </div>
-            )}
+            )} */}
           </CommandGroup>
         </CommandList>
       </CommandDialog>

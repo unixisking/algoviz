@@ -62,23 +62,3 @@ export async function submit(
 
   return allMetrics
 }
-
-export async function genReport(textInput: string): Promise<string> {
-  const response = await fetch(
-    'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2',
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,
-        'Content-Type': 'application/json',
-        'x-use-cache': 'false',
-      },
-      body: JSON.stringify({
-        inputs: textInput,
-        parameters: { max_new_tokens: 100, return_full_text: false },
-      }),
-    }
-  )
-  const result = await response.json()
-  return result[0].generated_text
-}
