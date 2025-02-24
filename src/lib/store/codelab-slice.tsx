@@ -2,14 +2,18 @@ import { StateCreator } from 'zustand'
 import { SharedSlice } from '.'
 import { AlgoPerfSlice } from './perf-slice'
 import { Preset, presets } from '@/data/presets'
+import { SubmissionResult } from '../constants'
 
 export interface CodelabSlice {
   currentPreset: Preset
-  codeResult: string
+  codeResult: { status: SubmissionResult; output: string } | null
 
   updatePreset: (newPresetId: string) => void
   updateCodeOfPreset: (code: string) => void
-  updateCodeResult: (newCodeResult: string) => void
+  updateCodeResult: (newCodeResult: {
+    status: SubmissionResult
+    output: string
+  }) => void
 }
 
 export const createAlgoTeachAISlice: StateCreator<
@@ -19,7 +23,7 @@ export const createAlgoTeachAISlice: StateCreator<
   CodelabSlice
 > = (set) => ({
   currentPreset: presets[0],
-  codeResult: '',
+  codeResult: null,
 
   updateCodeOfPreset: (code) =>
     set((prevState) => ({

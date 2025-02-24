@@ -21,7 +21,7 @@ enum SubmissionError {
   EXEC_FORMAT_ERROR = 'Exec Format Error',
 }
 
-enum SubmissionResult {
+export enum SubmissionResult {
   ACCEPTED = SubmissionStatus.ACCEPTED,
   ERROR = 'Error',
   IN_QUEUE = SubmissionStatus.IN_QUEUE,

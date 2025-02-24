@@ -109,10 +109,7 @@ export default function PlaygroundPage() {
                   </ResizablePanel>
                   <ResizableHandle />
                   <ResizablePanel className="relative">
-                    <div className="bg-black/90 text-white text-sm h-full">
-                      <p className="border border-white p-1">Output</p>
-                      <Output />
-                    </div>
+                    <Output />
                   </ResizablePanel>
                 </ResizablePanelGroup>
               </ResizablePanel>

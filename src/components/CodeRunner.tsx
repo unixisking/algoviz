@@ -4,6 +4,7 @@ import { RotateCcw } from 'lucide-react'
 import { Button } from './ui/button'
 import { useStore } from '@/lib/store'
 import { submission } from '@/lib/actions/judge0'
+import { SubmissionResult } from '@/lib/constants'
 
 export default function CodeRunner() {
   const presetCode = useStore((store) => store.currentPreset.code)
@@ -15,9 +16,15 @@ export default function CodeRunner() {
           const response = await submission(presetCode)
           console.log('response', response)
           if (response.success) {
-            updateCodeResult(response.response.stdout)
+            updateCodeResult({
+              status: SubmissionResult.ACCEPTED,
+              output: response.response.stdout,
+            })
           } else {
-            updateCodeResult(response.response.status.description)
+            updateCodeResult({
+              status: SubmissionResult.ERROR,
+              output: response.response.status.description,
+            })
           }
         }}
       >
