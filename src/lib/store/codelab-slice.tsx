@@ -6,13 +6,18 @@ import { SubmissionResult } from '../constants'
 
 export interface CodelabSlice {
   currentPreset: Preset
-  codeResult: { status: SubmissionResult; output: string } | null
+  codeResult: {
+    status: SubmissionResult
+    output: string
+    compile_output?: string
+  } | null
 
   updatePreset: (newPresetId: string) => void
   updateCodeOfPreset: (code: string) => void
   updateCodeResult: (newCodeResult: {
     status: SubmissionResult
     output: string
+    compile_output?: string
   }) => void
 }
 

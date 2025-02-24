@@ -19,17 +19,22 @@ export async function submission(source_code: string) {
         body: JSON.stringify({
           source_code: btoa(source_code),
           language_id: C_LANGUAGE_ID,
-          params,
         }),
       }
     )
     const submissionResponse = await submission.json()
     const isError = isSubmissionError(submissionResponse.status.description)
 
+    console.log('output', submissionResponse)
+    const decodedCompileOutput = isError
+      ? decodeFromBase64(submissionResponse.compile_output)
+      : null
+    console.log('decodedCompileOutput', decodedCompileOutput)
     return {
       success: !isError,
       response: {
         ...submissionResponse,
+        compile_output: decodedCompileOutput,
         stdout: isError
           ? submissionResponse.stdout
           : atob(submissionResponse.stdout),
@@ -39,4 +44,9 @@ export async function submission(source_code: string) {
     console.error('Error during submission call', error)
     return { sucess: false, message: 'Error during submission call' }
   }
+}
+
+const decodeFromBase64 = (text: string) => {
+  const decodedBuffer = Uint8Array.from(atob(text), (c) => c.charCodeAt(0))
+  return new TextDecoder('utf-8').decode(decodedBuffer)
 }

@@ -24,6 +24,7 @@ export default function CodeRunner() {
             updateCodeResult({
               status: SubmissionResult.ERROR,
               output: response.response.status.description,
+              compile_output: response.response.compile_output,
             })
           }
         }}

@@ -7,6 +7,7 @@ import { SquareChevronRight } from 'lucide-react'
 
 export function Output() {
   const codeResult = useStore((store) => store.codeResult)
+  console.log('codeResult', codeResult)
   return (
     <div className="text-sm h-full">
       <p className="border p-2">
@@ -36,7 +37,15 @@ export function Output() {
           )}
         </div>
       </p>
-      <div className="px-2 pt-2">{codeResult?.output}</div>
+      {codeResult && (
+        <div className="px-2 pt-2">
+          {codeResult?.status === SubmissionResult.ACCEPTED ? (
+            codeResult.output
+          ) : (
+            <pre className="text-red-700">{codeResult.compile_output}</pre>
+          )}
+        </div>
+      )}
     </div>
   )
 }

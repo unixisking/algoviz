@@ -96,22 +96,25 @@ export default function PlaygroundPage() {
             <Separator />
             <ResizablePanelGroup
               direction="horizontal"
-              className="max-w-vw rounded-lg border"
+              style={{ height: '80vh' }}
+              className="max-w-vw h-[] rounded-lg border"
             >
               <ResizablePanel defaultSize={70}>
-                <IDE />
-              </ResizablePanel>
-              <ResizableHandle />
-              <ResizablePanel>
                 <ResizablePanelGroup direction="vertical">
-                  <ResizablePanel defaultSize={80}>
-                    <Chat />
+                  <ResizablePanel defaultSize={85}>
+                    <IDE />
                   </ResizablePanel>
                   <ResizableHandle />
-                  <ResizablePanel className="relative">
+                  <ResizablePanel>
                     <Output />
                   </ResizablePanel>
                 </ResizablePanelGroup>
+              </ResizablePanel>
+
+              <ResizableHandle />
+
+              <ResizablePanel defaultSize={30}>
+                <Chat />
               </ResizablePanel>
             </ResizablePanelGroup>
           </TabsContent>
