@@ -9,7 +9,7 @@ export function Output() {
   const codeResult = useStore((store) => store.codeResult)
   console.log('codeResult', codeResult)
   return (
-    <div className="text-sm h-full">
+    <div className="text-sm h-full overflow-auto">
       <p className="border p-2">
         <div className="flex justify-between items-center">
           <div className="flex gap-4">
