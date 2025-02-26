@@ -30,9 +30,8 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function AreaChartComponent({ name, description, data }: IChartData) {
-  console.log('data', data)
   return (
-    <Card className="w-full border-0 shadow-none">
+    <Card className="w-full border-0 shadow-none dark:text-white">
       <CardHeader>
         <CardTitle>{name}</CardTitle>
         <CardDescription>{description}</CardDescription>

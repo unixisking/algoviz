@@ -1,16 +1,11 @@
 'use client'
 
 import React from 'react'
-// import { LineChart } from './AreaChart'
 import { useStore } from '@/lib/store'
 import { AreaChartComponent } from './AreaChart'
-// import { Button } from './ui/button'
-// import { InputAI } from './InputAI'
-// import { genReport } from '@/app/actions'
 
 export default function PerfCharts() {
   const metrics = useStore((state) => state.metrics)
-  // const [report, setReport] = React.useState<string | null>(null)
 
   return (
     <div className="col-span-4">
@@ -56,7 +51,7 @@ export const MagicIcon = (
         <stop offset="100%" stopColor="rgb(0,122,255)"></stop>
       </linearGradient>
     </defs>
-    <g clip-path="url(#__lottie_element_2)">
+    <g clipPath="url(#__lottie_element_2)">
       <g
         style={{ display: 'block' }}
         transform="matrix(1,0,0,1,1.0999999046325684,1.0999999046325684)"

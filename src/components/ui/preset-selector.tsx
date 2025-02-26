@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-// import { useRouter } from "next/navigation"
 import { PopoverProps } from '@radix-ui/react-popover'
 import { Check, ChevronsUpDown } from 'lucide-react'
 
@@ -30,9 +29,6 @@ interface PresetSelectorProps extends PopoverProps {
 
 export function PresetSelector({ presets, ...props }: PresetSelectorProps) {
   const [open, setOpen] = React.useState(false)
-  // const [selectedPreset, setSelectedPreset] = useStore(
-  //   ({ currentPreset, updatePreset }) => [currentPreset, updatePreset]
-  // )
   const selectedPreset = useStore((store) => store.currentPreset)
   const setSelectedPreset = useStore((store) => store.updatePreset)
 

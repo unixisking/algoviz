@@ -25,11 +25,9 @@ export async function submission(source_code: string) {
     const submissionResponse = await submission.json()
     const isError = isSubmissionError(submissionResponse.status.description)
 
-    console.log('output', submissionResponse)
     const decodedCompileOutput = isError
       ? decodeFromBase64(submissionResponse.compile_output)
       : null
-    console.log('decodedCompileOutput', decodedCompileOutput)
     return {
       success: !isError,
       response: {

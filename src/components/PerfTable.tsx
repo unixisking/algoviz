@@ -64,11 +64,15 @@ export default function PerfTable() {
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
                 className={`cursor-default transition-colors duration-300 ${
-                  highlightedRow === index ? 'bg-blue-100' : ''
+                  highlightedRow === index ? 'bg-blue-100 dark:bg-blue-900' : ''
                 }`}
               >
-                <td className="border-b border-gray-300">{item.metric}</td>
-                <td className="border-b border-gray-300">{item.value}</td>
+                <td className="border-b border-gray-300 dark:border-gray-600">
+                  {item.metric}
+                </td>
+                <td className="border-b border-gray-300 dark:border-gray-600">
+                  {item.value}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -101,11 +105,15 @@ export default function PerfTable() {
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
                 className={`cursor-default transition-colors duration-300 ${
-                  highlightedRow === index ? 'bg-blue-100' : ''
+                  highlightedRow === index ? 'bg-blue-100 dark:bg-blue-900' : ''
                 }`}
               >
-                <td className="border-b border-gray-300">{item.metric}</td>
-                <td className="border-b border-gray-300">{item.value}</td>
+                <td className="border-b border-gray-300 dark:border-gray-600">
+                  {item.metric}
+                </td>
+                <td className="border-b border-gray-300 dark:border-gray-600">
+                  {item.value}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -28,14 +28,11 @@ import {
 } from '@/components/ui/popover'
 
 import { Algo, AlgoType } from '@/data/models'
-// import { SharedSlice } from '@/lib/store'
 
 interface ModelSelectorProps extends PopoverProps {
   types: readonly AlgoType[]
   models: Algo[]
-  //   setCurrentAlgo: (model: Algo) => void
   currentAlgo: Algo
-  // setCurrentAlgo: SharedSlice['updateAlgo']
   setCurrentAlgo: (algo: Algo) => void
 }
 
@@ -47,9 +44,7 @@ export function AlgoSelector({
   ...props
 }: ModelSelectorProps) {
   const [open, setOpen] = React.useState(false)
-  // const [selectedModel, setSelectedModel] = React.useState<Model>(models[0])
   const [peekedModel, setPeekedModel] = React.useState<Algo>(models[0])
-  // console.log('selected', selectedAlgos)
 
   return (
     <div className="grid gap-2">

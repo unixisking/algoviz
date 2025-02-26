@@ -1,6 +1,6 @@
 'use client'
 
-import { RotateCcw } from 'lucide-react'
+// import { RotateCcw } from 'lucide-react'
 import { Button } from './ui/button'
 import { useStore } from '@/lib/store'
 import { submission } from '@/lib/actions/judge0'
@@ -14,7 +14,6 @@ export default function CodeRunner() {
       <Button
         onClick={async () => {
           const response = await submission(presetCode)
-          console.log('response', response)
           if (response.success) {
             updateCodeResult({
               status: SubmissionResult.ACCEPTED,
@@ -31,10 +30,10 @@ export default function CodeRunner() {
       >
         Run
       </Button>
-      <Button variant="secondary">
+      {/* <Button variant="secondary">
         <span className="sr-only">Reset</span>
         <RotateCcw />
-      </Button>
+      </Button> */}
     </div>
   )
 }

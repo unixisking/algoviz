@@ -1,8 +1,16 @@
 'use client'
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 type Theme = 'dark' | 'light' | 'system'
+type AppliedTheme = 'dark' | 'light'
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -12,11 +20,13 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme
+  appliedTheme: AppliedTheme | null
   toggleTheme: (theme: Theme) => void
 }
 
 const initialState: ThemeProviderState = {
   theme: 'system',
+  appliedTheme: null,
   toggleTheme: () => null,
 }
 
@@ -36,6 +46,8 @@ export function ThemeProvider({
     }
   })
 
+  const [appliedTheme, setAppliedTheme] = useState<AppliedTheme | null>(null)
+
   useEffect(() => {
     const root = window.document.documentElement
 
@@ -48,23 +60,32 @@ export function ThemeProvider({
         : 'light'
 
       root.classList.add(systemTheme)
+      setAppliedTheme(systemTheme)
       return
     }
 
     root.classList.add(theme)
   }, [theme])
 
-  const toggleTheme = (theme: Theme) => {
-    try {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const toggleTheme = useCallback(
+    (theme: Theme) => {
+      try {
+        localStorage.setItem(storageKey, theme)
+        setTheme(theme)
+        if (theme != 'system') {
+          setAppliedTheme(theme)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    [storageKey]
+  )
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const themeProps = useMemo(() => ({ theme, toggleTheme }), [theme])
+  const themeProps = useMemo(
+    () => ({ theme, toggleTheme, appliedTheme }),
+    [appliedTheme, theme, toggleTheme]
+  )
 
   return (
     <ThemeProviderContext.Provider {...props} value={themeProps}>
