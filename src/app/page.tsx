@@ -22,7 +22,7 @@ import CodeRunner from '@/components/CodeRunner'
 export default function PlaygroundPage() {
   return (
     <ThemeProvider>
-      <div className="hidden h-full flex-col md:flex p-4 mx-auto  dark:bg-zinc-900 dark:text-zinc-100">
+      <div className="h-full flex-col md:flex p-4 mx-auto  dark:bg-zinc-900 dark:text-zinc-100">
         <Tabs defaultValue="codelab" className="dark:text-zinc-100">
           <TabsList className="dark:bg-zinc-800">
             <TabsTrigger
@@ -44,7 +44,7 @@ export default function PlaygroundPage() {
                 Performance Benchmarks of Pattern Matching Algorithms
               </h2>
               <div className="ml-auto flex w-full space-x-2 sm:justify-end">
-                <div className="hidden space-x-2 md:flex">
+                <div className="space-x-2 md:flex">
                   <CodeViewer />
                 </div>
                 <ToggleTheme />
@@ -53,7 +53,7 @@ export default function PlaygroundPage() {
             <Separator className="dark:bg-zinc-700" />
             <div className="container h-full py-6">
               <div className="grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]">
-                <div className="hidden flex-col space-y-4 sm:flex md:order-2">
+                <div className="flex-col space-y-4 sm:flex md:order-2">
                   <AlgoOptions />
                 </div>
                 <div className="md:order-1">
@@ -75,7 +75,7 @@ export default function PlaygroundPage() {
                 Code Lab: Test your algorithms here
               </h2>
               <div className="ml-auto flex w-full space-x-2 sm:justify-end">
-                <div className="hidden space-x-2 md:flex">
+                <div className="space-x-2 lg:flex gap-4">
                   <PresetSelector presets={presets} />
                   <CodeRunner />
                 </div>

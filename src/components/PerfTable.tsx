@@ -36,7 +36,7 @@ export default function PerfTable() {
     ).toFixed(3),
   }
   return (
-    <div className="col-span-2 text-md mt-12 space-y-4">
+    <div className="col-span-6 lg:col-span-2 text-md mt-12 space-y-4">
       <div>
         <p className="font-bold">{firstAlgo.info.name}</p>
         <table className="w-full text-left">

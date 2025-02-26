@@ -8,7 +8,7 @@ export default function PerfCharts() {
   const metrics = useStore((state) => state.metrics)
 
   return (
-    <div className="col-span-4">
+    <div className="col-span-6 lg:col-span-4">
       <AreaChartComponent
         name="Performance Benchmarks"
         description="Comparison of different pattern lengths"
