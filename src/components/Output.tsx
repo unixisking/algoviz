@@ -9,7 +9,7 @@ export function Output() {
   const codeResult = useStore((store) => store.codeResult)
   return (
     <div className="text-sm h-full overflow-auto">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center border-b py-2 border-b-gray-200 dark:border-b-gray-700">
         <div className="flex gap-4">
           <div className="border-r pr-2 ">
             <SquareChevronRight className="w-5 h-5 flex-shrink-0" />
